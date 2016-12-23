@@ -1,7 +1,8 @@
 # VUGShell
-API for accessing precompiled UGShell distribution for VRL plugins and Java projects
 
 [ ![Download](https://api.bintray.com/packages/miho/UG/VUGShell/images/download.svg) ](https://bintray.com/miho/UG/VUGShell/_latestVersion)
+
+API for accessing precompiled UGShell distribution for VRL plugins and Java projects
 
 ## Usage:
 
@@ -30,3 +31,28 @@ To destroy the current process, the `destroy()`method can be used:
 // execute laplace.lua with working directory "exampleDir"
 Shell.execute(exampleDir, new File(exampleDir,"laplace.lua")).destroy();
 ```
+
+## How to Build VUGShell
+
+### Requirements
+
+- Java >= 1.8
+- Internet connection (dependencies are downloaded automatically)
+- IDE: [Gradle](http://www.gradle.org/) Plugin (not necessary for command line usage)
+
+### IDE
+
+Open the `VUGShell` [Gradle](http://www.gradle.org/) project in your favourite IDE (tested with NetBeans 8.2) and build it
+by calling the `assemble` task.
+
+### Command Line
+
+Navigate to the [Gradle](http://www.gradle.org/) project (e.g., `path/to/VUGShell`) and enter the following command
+
+#### Bash (Linux/OS X/Cygwin/other Unix-like shell)
+
+    sh gradlew assemble
+    
+#### Windows (CMD)
+
+    gradlew assemble
