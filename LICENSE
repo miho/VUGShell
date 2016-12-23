@@ -1,1 +1,71 @@
 
+Copyright (c) 2009–2016 Steinbeis Forschungszentrum (STZ Ölbronn),
+Copyright (c) 2006–2016 by Michael Hoffer
+
+This file is part of Visual Reflection Library (VRL).
+
+VRL is free software: you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License version 3
+as published by the Free Software Foundation.
+
+see: http://opensource.org/licenses/LGPL-3.0
+     file://path/to/VRL/src/eu/mihosoft/vrl/resources/license/lgplv3.txt
+
+VRL is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+This version of VRL includes copyright notice and attribution requirements.
+According to the LGPL this information must be displayed even if you modify
+the source code of VRL. Neither the VRL Canvas attribution icon nor any
+copyright statement/attribution may be removed.
+
+Attribution Requirements:
+
+If you create derived work you must do three things regarding copyright
+notice and author attribution.
+
+First, the following text must be displayed on the Canvas:
+"based on VRL source code". In this case the VRL canvas icon must be removed.
+
+Second, the copyright notice must remain. It must be reproduced in any
+program that uses VRL.
+
+Third, add an additional notice, stating that you modified VRL. Please cite the publications listed below.
+
+Note, that these requirements are in full accordance with the LGPL v3
+(see 7. Additional Terms, b).
+
+Publications:
+
+M. Hoffer, C.Poliwoda, G.Wittum. Visual Reflection Library -
+A Framework for Declarative GUI Programming on the Java Platform.
+Computing and Visualization in Science, 2011, in press.
+UG4 - Unstructured Grids 4
+Copyright 2009-2016 Goethe Center for Scientific Computing, University Frankfurt
+----------------------------------------------------------------------------------------------------------------
+UG4 is free software: you can redistribute it and/or modify it under the
+terms of the GNU Lesser General Public License version 3 (as published by the
+Free Software Foundation) with the following additional attribution
+requirements (according to LGPL/GPL v3 §7):
+
+(1) The following notice must be displayed in the Appropriate Legal Notices
+of covered and combined works: "Based on UG4 (www.ug4.org/license)".
+
+(2) The following notice must be displayed at a prominent place in the
+terminal output of covered works: "Based on UG4 (www.ug4.org/license)".
+
+(3) The following bibliography is recommended for citation and must be
+preserved in all covered files:
+"Reiter, S., Vogel, A., Heppner, I., Rupp, M., and Wittum, G. A massively
+  parallel geometric multigrid solver on hierarchically distributed grids.
+  Computing and visualization in science 16, 4 (2013), 151-164"
+"Vogel, A., Reiter, S., Rupp, M., Nägel, A., and Wittum, G. UG4 -- a novel
+  flexible software system for simulating pde based models on high performance
+  computers. Computing and visualization in science 16, 4 (2013), 165-179"
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU Lesser General Public License for more details.
