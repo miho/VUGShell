@@ -1,5 +1,5 @@
 /* 
- * PropertyFolderLockedException.java
+ * SynchronizedFileTask.java
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
@@ -50,29 +50,18 @@
  * Computing and Visualization in Science, 2011, in press.
  */
 
-package eu.mihosoft.ugshell.util;
+package eu.mihosoft.ugshell.vugshell.util;
 
 import java.io.File;
 
 /**
- *
+ * This interface defines a synchronized file task.
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
-
-
-class PropertyFolderLockedException extends RuntimeException{
-    private final File propertyFolder;
-
-    public PropertyFolderLockedException(File propertyFolder) {
-        this.propertyFolder = propertyFolder;
-    }
-    
-    
-
+interface SynchronizedFileTask {
     /**
-     * @return the propertyFolder
+     * Performs this task.
+     * @param f the file to access
      */
-    public File getPropertyFolder() {
-        return propertyFolder;
-    }
+    public void performTask(File f);
 }

@@ -1,5 +1,5 @@
 /* 
- * VObjectInputStream.java
+ * ConfigurationFile.java
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
@@ -50,44 +50,28 @@
  * Computing and Visualization in Science, 2011, in press.
  */
 
-package eu.mihosoft.ugshell.util;
+package eu.mihosoft.ugshell.vugshell.util;
 
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectStreamClass;
+import java.util.Map;
 
 /**
- * VRL uses this input stream to ensure that classes defined as abstract code
- * and some other serialized classes/objects can be loaded. There is usally no
- * need to use this input stream outside of VRL core classes.
  *
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
-class VObjectInputStream extends ObjectInputStream {
-
-    private ClassLoader classLoader;
-
-    /**
-     * Constructor.
-     *
-     * @param in the input stream to use
-     * @param classLoader the class loader to use
-     * @throws java.io.IOException
-     */
-    public VObjectInputStream(
-            InputStream in, ClassLoader classLoader) throws IOException {
-        super(in);
-        this.classLoader = classLoader;
-    }
-
-    @Override
-    protected Class<?> resolveClass(
-            ObjectStreamClass desc) throws ClassNotFoundException {        
-//        return Class.forName(desc.getName(), false, classLoader);
 
 
-        return VClassLoaderUtil.forName(desc.getName(), classLoader);
-    }
+interface ConfigurationFile {
+    
+    public ConfigurationFile setProperty(String key, String value);
+    public boolean save();
+    public boolean load();
+    public String getProperty(String key);
+    
+    public Iterable<String> getKeys();
+    public Iterable<String> getValues();
+    
+    public ConfigurationFile removeProperty(String key);
+    
+    public boolean containsProperty(String key);
+    
 }

@@ -1,6 +1,6 @@
-package eu.mihosoft.ugshell.util;
+package eu.mihosoft.ugshell.vugshell.util;
 
-import eu.mihosoft.ugshell.Shell;
+import eu.mihosoft.ugshell.vugshell.Shell;
 import eu.mihosoft.ugshell.ugdist.UGDist;
 import java.io.BufferedReader;
 import java.io.File;

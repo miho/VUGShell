@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.mihosoft.ugshell.util;
+package eu.mihosoft.ugshell.vugshell.util;
 
 /**
  *

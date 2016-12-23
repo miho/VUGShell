@@ -1,5 +1,5 @@
 /* 
- * ValidationResult.java
+ * VObjectInputStream.java
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
@@ -50,60 +50,44 @@
  * Computing and Visualization in Science, 2011, in press.
  */
 
-package eu.mihosoft.ugshell.util;
+package eu.mihosoft.ugshell.vugshell.util;
+
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectStreamClass;
 
 /**
- * Validation result.
- * @see VParamUtil
+ * VRL uses this input stream to ensure that classes defined as abstract code
+ * and some other serialized classes/objects can be loaded. There is usally no
+ * need to use this input stream outside of VRL core classes.
+ *
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
-class ValidationResult {
-    private String message;
-    private boolean valid;
-    private Object parameter;
-    
-    /**
-     * Result that represents a valid parameter.
-     */
-    public static final ValidationResult VALID =
-            new ValidationResult(true, null, null);
-    
-    /**
-     * Result that represents an invalid parameter.
-     */
-    public static final ValidationResult INVALID = 
-            new ValidationResult(false, null, null);
+class VObjectInputStream extends ObjectInputStream {
+
+    private ClassLoader classLoader;
 
     /**
      * Constructor.
-     * @param valid defines whether this result represents a valid parameter
-     * @param message result message (may be <code>null</code>)
-     * @param parameter validated parameter (may be <code>null</code>)
+     *
+     * @param in the input stream to use
+     * @param classLoader the class loader to use
+     * @throws java.io.IOException
      */
-    public ValidationResult(boolean valid, Object parameter, String message) {
-        this.message = message;
-        this.valid = valid;
-        this.parameter = parameter;
-    }
-    
-    /**
-     * @return the message
-     */
-    public String getMessage() {
-        return message;
+    public VObjectInputStream(
+            InputStream in, ClassLoader classLoader) throws IOException {
+        super(in);
+        this.classLoader = classLoader;
     }
 
-    /**
-     * @return the validation state
-     */
-    public boolean isValid() {
-        return valid;
-    }
+    @Override
+    protected Class<?> resolveClass(
+            ObjectStreamClass desc) throws ClassNotFoundException {        
+//        return Class.forName(desc.getName(), false, classLoader);
 
-    /**
-     * @return the parameter
-     */
-    public Object getParameter() {
-        return parameter;
+
+        return VClassLoaderUtil.forName(desc.getName(), classLoader);
     }
 }

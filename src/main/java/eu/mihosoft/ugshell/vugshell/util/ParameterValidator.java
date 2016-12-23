@@ -1,5 +1,5 @@
 /* 
- * ConfigurationFile.java
+ * ParameterValidator.java
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
@@ -50,28 +50,26 @@
  * Computing and Visualization in Science, 2011, in press.
  */
 
-package eu.mihosoft.ugshell.util;
-
-import java.util.Map;
+package eu.mihosoft.ugshell.vugshell.util;
 
 /**
- *
+ * A parameter validator.
+ * @see VParamUtil
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
-
-
-interface ConfigurationFile {
-    
-    public ConfigurationFile setProperty(String key, String value);
-    public boolean save();
-    public boolean load();
-    public String getProperty(String key);
-    
-    public Iterable<String> getKeys();
-    public Iterable<String> getValues();
-    
-    public ConfigurationFile removeProperty(String key);
-    
-    public boolean containsProperty(String key);
-    
+interface ParameterValidator {
+    /**
+     * Validates the specified parameter.
+     * @param p parameter to validate
+     * @return validation result
+     */
+    public ValidationResult validate(Object p);
+    /**
+     * Validates the specified parameter.
+     * @param p parameter to validate
+     * @param validationArg validationArg validation argument 
+     * (may be null, usage depends on the validator implementation)
+     * @return validation result
+     */
+    public ValidationResult validate(Object p, Object validationArg);
 }

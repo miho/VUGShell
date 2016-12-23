@@ -1,5 +1,5 @@
 /* 
- * ParameterValidator.java
+ * ValidationResult.java
  * 
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER.
  *
@@ -50,26 +50,60 @@
  * Computing and Visualization in Science, 2011, in press.
  */
 
-package eu.mihosoft.ugshell.util;
+package eu.mihosoft.ugshell.vugshell.util;
 
 /**
- * A parameter validator.
+ * Validation result.
  * @see VParamUtil
  * @author Michael Hoffer <info@michaelhoffer.de>
  */
-interface ParameterValidator {
+class ValidationResult {
+    private String message;
+    private boolean valid;
+    private Object parameter;
+    
     /**
-     * Validates the specified parameter.
-     * @param p parameter to validate
-     * @return validation result
+     * Result that represents a valid parameter.
      */
-    public ValidationResult validate(Object p);
+    public static final ValidationResult VALID =
+            new ValidationResult(true, null, null);
+    
     /**
-     * Validates the specified parameter.
-     * @param p parameter to validate
-     * @param validationArg validationArg validation argument 
-     * (may be null, usage depends on the validator implementation)
-     * @return validation result
+     * Result that represents an invalid parameter.
      */
-    public ValidationResult validate(Object p, Object validationArg);
+    public static final ValidationResult INVALID = 
+            new ValidationResult(false, null, null);
+
+    /**
+     * Constructor.
+     * @param valid defines whether this result represents a valid parameter
+     * @param message result message (may be <code>null</code>)
+     * @param parameter validated parameter (may be <code>null</code>)
+     */
+    public ValidationResult(boolean valid, Object parameter, String message) {
+        this.message = message;
+        this.valid = valid;
+        this.parameter = parameter;
+    }
+    
+    /**
+     * @return the message
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * @return the validation state
+     */
+    public boolean isValid() {
+        return valid;
+    }
+
+    /**
+     * @return the parameter
+     */
+    public Object getParameter() {
+        return parameter;
+    }
 }

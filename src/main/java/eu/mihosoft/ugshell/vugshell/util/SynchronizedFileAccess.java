@@ -50,7 +50,7 @@
  * Computing and Visualization in Science, 2011, in press.
  */
 
-package eu.mihosoft.ugshell.util;
+package eu.mihosoft.ugshell.vugshell.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;

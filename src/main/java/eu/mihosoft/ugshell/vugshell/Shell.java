@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package eu.mihosoft.ugshell;
+package eu.mihosoft.ugshell.vugshell;
 
-import eu.mihosoft.ugshell.util.ShellImpl;
+import eu.mihosoft.ugshell.vugshell.util.ShellImpl;
 import java.io.File;
 import java.io.PrintStream;
 

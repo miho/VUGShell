@@ -5,7 +5,8 @@
  */
 package eu.mihosoft.ugshell;
 
-import eu.mihosoft.ugshell.util.ShellImpl;
+import eu.mihosoft.ugshell.vugshell.Shell;
+import eu.mihosoft.ugshell.vugshell.util.ShellImpl;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
