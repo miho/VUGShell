@@ -6,6 +6,11 @@ API for accessing precompiled UGShell distribution via VRL plugins and Java proj
 
 ## Usage:
 
+To execute lua code, the following method can be used:
+```java
+// execute code with working directory "exampleDir"
+Shell.execute(exampleDir, "print(\"Hello from Java!\")");
+```
 To execute a specified ug *.lua script, the following method can be used:
 ```java
 // execute laplace.lua with working directory "exampleDir"
