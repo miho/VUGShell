@@ -55,9 +55,20 @@ public interface Shell {
     
     /**
      * Executes ugshell with the specified script.
+     *
+     * @param wd working directory
+     * @param script script code that shall be executed
+     * @return this shell
+     */
+    public static ShellImpl execute(File wd, String script) {
+        return ShellImpl.execute(wd, script);
+    }
+    
+    /**
+     * Executes ugshell with the specified script.
      * 
      * @param wd working directory
-     * @param script scrit that shall be executed
+     * @param script script that shall be executed
      * @return this shell
      */
     static Shell execute(File wd, File script) {

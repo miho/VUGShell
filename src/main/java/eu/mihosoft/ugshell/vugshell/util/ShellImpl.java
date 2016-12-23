@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ShellImpl implements Shell{
+public class ShellImpl implements Shell {
 
     private static File executableFile;
     private static File ugRootPath;
@@ -125,6 +125,35 @@ public class ShellImpl implements Shell{
         return this;
     }
 
+    /**
+     * Executes ugshell with the specified script.
+     *
+     * @param wd working directory
+     * @param script script that shall be executed
+     * @return this shell
+     */
+    public static ShellImpl execute(File wd, String script) {
+        File tmpDir;
+        File scriptFile;
+        try {
+            tmpDir = Files.createTempDirectory("ugshell-script-tmp").toFile();
+            scriptFile = new File(tmpDir, "code.lua");
+            Files.write(scriptFile.toPath(), script.getBytes("UTF-8"));
+        } catch (IOException ex) {
+            Logger.getLogger(ShellImpl.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException("Cannot execute script due to io exception", ex);
+        }
+
+        return execute(tmpDir, scriptFile);
+    }
+
+    /**
+     * Executes ugshell with the specified script.
+     *
+     * @param wd working directory
+     * @param script script that shall be executed
+     * @return this shell
+     */
     public static ShellImpl execute(File wd, File script) {
 
         initialize();
@@ -165,6 +194,7 @@ public class ShellImpl implements Shell{
      * Calls ugshell with the specified arguments.
      *
      * @param arguments arguments
+     * @param wd working directory
      * @param waitFor indicates whether to wait for process execution
      * @return ugshell process
      */
@@ -268,7 +298,7 @@ public class ShellImpl implements Shell{
 
         return executableFile;
     }
-    
+
     /**
      * Unzips specified source archive to the specified destination folder. If
      * the destination directory does not exist it will be created.
@@ -280,7 +310,7 @@ public class ShellImpl implements Shell{
     public static void unzip(File archive, File destDir) throws IOException {
         IOUtil.unzip(archive, destDir);
     }
-    
+
     /**
      * Saves the specified stream to file.
      *
