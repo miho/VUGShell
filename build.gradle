@@ -35,7 +35,7 @@ repositories {
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.10'
     
-    compile 'eu.mihosoft.ugshell.ugdist:ugshell-dist:2016.1'
+//    compile 'eu.mihosoft.ugshell.ugdist:ugshell-dist:2016.1'
 }
 
 //task run(type: JavaExec) {
