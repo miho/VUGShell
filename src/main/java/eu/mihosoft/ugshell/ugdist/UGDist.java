@@ -28,7 +28,7 @@ public class UGDist {
         return RESOURCE_PACKAGE
                 + "/" + VSysUtil.getPlatformSpecificPath();
     }
-    
+
     /**
      *
      * @param f folder where the ug distribution shall be extracted to (folder
@@ -44,13 +44,21 @@ public class UGDist {
         String resourceName
                 = RESOURCE_PACKAGE
                 + "/" + VSysUtil.getPlatformSpecificPath() + "ug.zip";
+        InputStream stream = UGDist.class.getResourceAsStream(resourceName);
 
-        IOUtil.saveStreamToFile(UGDist.class.getResourceAsStream(resourceName),
-                ugdist);
+        if (stream == null) {
+
+            System.err.println("UGShell distribution for \""
+                    + VSysUtil.getPlatformInfo()
+                    + "\" not available on the classpath!");
+
+            throw new RuntimeException(
+                    "UGShell distribution for \"" + VSysUtil.getPlatformInfo()
+                    + "\" not available on the classpath!");
+        }
+
+        IOUtil.saveStreamToFile(stream, ugdist);
         IOUtil.unzip(ugdist, f);
-
-//        extractDirFromClassPath(UGDist.class.getClassLoader(),
-//                RESOURCE_PACKAGE+"/"+VSysUtil.getPlatformSpecificPath(), f);
     }
 
     /**
