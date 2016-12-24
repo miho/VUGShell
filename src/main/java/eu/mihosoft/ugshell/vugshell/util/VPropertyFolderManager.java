@@ -66,7 +66,7 @@ class VPropertyFolderManager {
     private final String HOME_FOLDER =
             System.getProperty("user.home");
     private final File PROPERTY_FOLDER_BASE =
-            new File(HOME_FOLDER + "/.ugshell/" + Constants.VERSION);
+            new File(HOME_FOLDER + "/.vugshell/" + Constants.VERSION);
     private  File PROPERTY_FOLDER;
     private  File PROPERTY_FOLDER_TEMPLATE;
     private  File TMP_BASE;
