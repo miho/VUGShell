@@ -45,7 +45,7 @@ public class ShellImpl implements Shell {
 
         try {
             Path confDir
-                    = Paths.get(System.getProperty("user.home"), ".ugshell").
+                    = Paths.get(System.getProperty("user.home"), ".vugshell").
                             toAbsolutePath();
             Path distDir = Paths.get(confDir.toString(), "ug-dist");
             File base = confDir.toFile();
