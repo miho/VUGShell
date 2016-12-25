@@ -71,7 +71,7 @@ public class ShellImpl implements Shell {
 
             try {
                 Class<?> buildInfoCls = Class.forName("eu.mihosoft.ugshell.ugdist.BuildInfo");
-                Field timestampFromDistField = buildInfoCls.getDeclaredField("DATE");
+                Field timestampFromDistField = buildInfoCls.getDeclaredField("TIMESTAMP");
                 timestampFromDistField.setAccessible(true);
                 timestampFromDist = (String) timestampFromDistField.get(buildInfoCls);
             } catch (ClassNotFoundException ex) {
