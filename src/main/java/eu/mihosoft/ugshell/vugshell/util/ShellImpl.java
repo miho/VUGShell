@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -66,27 +67,45 @@ public class ShellImpl implements Shell {
 
             executableFile = getExecutablePath(distDir);
 
+            String timestampFromDist;
+
+            try {
+                Class<?> buildInfoCls = Class.forName("eu.mihosoft.ugshell.ugdist.BuildInfo");
+                Field timestampFromDistField = buildInfoCls.getDeclaredField("DATE");
+                timestampFromDistField.setAccessible(true);
+                timestampFromDist = (String) timestampFromDistField.get(buildInfoCls);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ShellImpl.class.getName()).log(Level.SEVERE, null, ex);
+                throw new RuntimeException(
+                        "UGShell distribution for \"" + VSysUtil.getPlatformInfo()
+                        + "\" not available on the classpath!", ex);
+            } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException ex) {
+                Logger.getLogger(ShellImpl.class.getName()).log(Level.SEVERE, null, ex);
+                throw new RuntimeException(
+                        "UGShell distribution for \"" + VSysUtil.getPlatformInfo()
+                        + "\" does not contain valid build info!", ex);
+            }
+
+            // if no previous timestamp exists or if no ug folder exists
             if (timestamp == null || !ugFolder.exists()) {
                 System.out.println(
                         " -> installing ug to \"" + distDir + "\"");
                 UGDist.extractTo(distDir.toFile());
-                String currentTimestamp = "" + ugFolder.lastModified();
-                confFile.setProperty("timestamp", currentTimestamp);
+                confFile.setProperty("timestamp", timestampFromDist);
+                confFile.save();
+            } else // we need to update the ug distribution
+            if (!Objects.equals(timestamp, timestampFromDist)) {
+                System.out.println(
+                        " -> updating ug in \"" + distDir + "\"");
+                System.out.println(" --> current version: " + timestamp);
+                System.out.println(" --> new     version: " + timestampFromDist);
+                UGDist.extractTo(distDir.toFile());
+                confFile.setProperty("timestamp", timestampFromDist);
                 confFile.save();
             } else {
-
-                String currentTimestamp = "" + executableFile.lastModified();
-                if (!Objects.equals(timestamp, currentTimestamp)) {
-                    System.out.println(
-                            " -> updating ug in \"" + distDir + "\"");
-                    UGDist.extractTo(distDir.toFile());
-                    currentTimestamp = "" + ugFolder.lastModified();
-                    confFile.setProperty("timestamp", currentTimestamp);
-                    confFile.save();
-                } else {
-                    System.out.println(
-                            " -> ug up to date in \"" + distDir + "\"");
-                }
+                System.out.println(
+                        " -> ug up to date in \"" + distDir + "\""
+                );
             }
 
         } catch (IOException ex) {
