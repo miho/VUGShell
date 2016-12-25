@@ -64,6 +64,8 @@ public class ShellImpl implements Shell {
             String timestamp = confFile.getProperty("timestamp");
             File ugFolder = new File(distDir.toFile(), "ug");
 
+            executableFile = getExecutablePath(distDir);
+
             if (timestamp == null || !ugFolder.exists()) {
                 System.out.println(
                         " -> installing ug to \"" + distDir + "\"");
@@ -72,7 +74,8 @@ public class ShellImpl implements Shell {
                 confFile.setProperty("timestamp", currentTimestamp);
                 confFile.save();
             } else {
-                String currentTimestamp = "" + ugFolder.lastModified();
+
+                String currentTimestamp = "" + executableFile.lastModified();
                 if (!Objects.equals(timestamp, currentTimestamp)) {
                     System.out.println(
                             " -> updating ug in \"" + distDir + "\"");
@@ -85,8 +88,6 @@ public class ShellImpl implements Shell {
                             " -> ug up to date in \"" + distDir + "\"");
                 }
             }
-
-            executableFile = getExecutablePath(distDir);
 
         } catch (IOException ex) {
             Logger.getLogger(ShellImpl.class.getName()).log(Level.SEVERE, null, ex);
