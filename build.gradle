@@ -17,7 +17,7 @@ tasks.withType(Javadoc) {
 }
 
 task wrapper(type: Wrapper, description: 'Creates and deploys the Gradle wrapper to the current directory.') {
-    gradleVersion = '3.1'
+    gradleVersion = '3.5'
 }
 
 if (!hasProperty('mainClass')) {
@@ -27,15 +27,11 @@ if (!hasProperty('mainClass')) {
 repositories {
     mavenCentral()
     jcenter()
-    maven {
-        url 'https://dl.bintray.com/miho/UG'
-    }
 }
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.10'
-    
-//    compile 'eu.mihosoft.ugshell.ugdist:ugshell-dist:2016.1'
+    testCompile 'eu.mihosoft.ugshell.ugdist:ugshell-dist:2016.1.5'
 }
 
 //task run(type: JavaExec) {

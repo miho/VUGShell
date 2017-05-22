@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 ext.publishing.artifactId =  project.name.toLowerCase()
 ext.publishing.groupId    =  'eu.mihosoft.ugshell.vugshell'
-ext.publishing.versionId  =  '2016.1.7'
+ext.publishing.versionId  =  '2017.1.0'
 
 ext.publishing.developerName         = 'Michael Hoffer'
 ext.publishing.developerAlias        = 'miho'
@@ -17,7 +17,7 @@ ext.publishing.bintray.name          = project.name
 ext.publishing.desc                  = 'API for accessing precompiled UGShell distribution for VRL plugins and Java projects'
 ext.publishing.license               = 'LGPL-3.0'
 ext.publishing.licenseUrl            = 'https://github.com/miho/VUGShell/blob/master/LICENSE'
-ext.publishing.labels                = ['ug4', 'ug', 'PDE', 'java', 'vworkflows', 'vrl',,'vrl-studio', 'ProMesh']
+ext.publishing.labels                = ['ug4', 'ug', 'PDE', 'java', 'vworkflows', 'vrl','vrl-studio', 'ProMesh']
 ext.publishing.websiteUrl            = 'https://github.com/miho/VUGShell'
 ext.publishing.issueTrackerUrl       = 'https://github.com/miho/VUGShell/issues'
 ext.publishing.vcsUrl                = 'git@github.com:miho/VUGShell.git'

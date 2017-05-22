@@ -60,7 +60,7 @@ public interface Shell {
      * @param script script code that shall be executed
      * @return this shell
      */
-    public static ShellImpl execute(File wd, String script) {
+    public static Shell execute(File wd, String script) {
         return ShellImpl.execute(wd, script);
     }
     
