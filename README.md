@@ -11,7 +11,7 @@ To execute lua code, the following method can be used:
 // execute code with working directory "exampleDir"
 Shell.execute(exampleDir, "print(\"Hello from Java!\")");
 ```
-To execute a specified ug *.lua script, the following method can be used:
+To execute a specified ug *.lua script, use:
 ```java
 // execute laplace.lua with working directory "exampleDir"
 Shell.execute(exampleDir, new File(exampleDir,"laplace.lua"));
@@ -19,7 +19,7 @@ Shell.execute(exampleDir, new File(exampleDir,"laplace.lua"));
 To print the output to given print streams, use the `print(...)` method:
 ```java
 // execute laplace.lua with working directory "exampleDir"
-Shell.execute(exampleDir, new File(exampleDir,"laplace.lua")).print(System.out,System.err)
+Shell.execute(exampleDir, new File(exampleDir,"laplace.lua")).print(System.out,System.err);
 ```
 To wait until the execution has finished, use the `waitFor()` method:
 ```java
