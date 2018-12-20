@@ -23,6 +23,8 @@ public class ShellImpl implements Shell {
     private static File ugRootPath;
     private final Process ugshellprocess;
     private static boolean initialized;
+    private StreamGobbler errorGobbler;
+    private StreamGobbler stdGobbler;
 
     static {
         // static init
@@ -117,18 +119,22 @@ public class ShellImpl implements Shell {
 
     @Override
     public ShellImpl print(PrintStream out, PrintStream err) {
-        new StreamGobbler(err, ugshellprocess.getErrorStream(), "").start();
-        new StreamGobbler(out, ugshellprocess.getInputStream(), "").start();
+        errorGobbler = new StreamGobbler(err, ugshellprocess.getErrorStream(), "").start();
+        errorGobbler.start();
+        stdGobbler = new StreamGobbler(out, ugshellprocess.getInputStream(), "").start();
+        stdGobbler.start();
 
         return this;
     }
 
     @Override
     public ShellImpl print() {
-        new StreamGobbler(System.err, ugshellprocess.getErrorStream(), "")
+        errorGobbler = new StreamGobbler(System.err, ugshellprocess.getErrorStream(), "")
                 .start();
-        new StreamGobbler(System.out, ugshellprocess.getInputStream(), "")
+        errorGobbler.start();
+        stdGobbler = new StreamGobbler(System.out, ugshellprocess.getInputStream(), "")
                 .start();
+        stdGobbler.start();
 
         return this;
     }
@@ -137,6 +143,14 @@ public class ShellImpl implements Shell {
     public ShellImpl waitFor() {
         try {
             ugshellprocess.waitFor();
+            
+            if(errorGobbler!=null) {
+                errorGobbler.join();
+            }
+            if(stdGobbler!=null) {
+                stdGobbler.join();
+            }
+            
         } catch (InterruptedException ex) {
             Logger.getLogger(ShellImpl.class.getName()).log(Level.SEVERE, null, ex);
             throw new RuntimeException("Cannot wait until process is finished", ex);
