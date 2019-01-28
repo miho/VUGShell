@@ -1,6 +1,7 @@
 # VUGShell
 
-[ ![Download](https://api.bintray.com/packages/miho/UG/VUGShell/images/download.svg) ](https://bintray.com/miho/UG/VUGShell/_latestVersion)
+[ ![Download](https://api.bintray.com/packages/miho/UG/VUGShell/images/download.svg) ](https://bintray.com/miho/UG/VUGShell/_latestVersion) [![Javadocs](https://www.javadoc.io/badge/eu.mihosoft.ugshell.vugshell/vugshell.svg)](https://www.javadoc.io/doc/eu.mihosoft.ugshell.vugshell/vugshell)
+
 
 API for accessing precompiled UGShell/[ug4](https://github.com/UG4/ugcore) distribution via [VRL](http://vrl-studio.mihosoft.eu/) plugins and Java projects. Binary distributions of [ug4](https://github.com/UG4/ugcore) are consumed as [ugshell-dist](https://github.com/miho/ugshell-dist). See the [sample](https://github.com/miho/VUGShell-Sample) on how to declare native dependencies.
 
